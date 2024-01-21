@@ -17,5 +17,16 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 80%;
+    margin: 2rem;
+
+    @media (max-width: 950px) {
+        width: 90%;
+        margin: 2rem 1rem;
+    }
+
+    @media (max-width: 675px) {
+        width: 100%;
+        margin: 2rem 1rem;
+    }
 `;
