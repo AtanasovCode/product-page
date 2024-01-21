@@ -1,5 +1,7 @@
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 
+import ProductPreview from "./components/ProductPreview";
+
 const App = () => {
 
   const darkTheme = {
@@ -15,7 +17,9 @@ const App = () => {
   return (
     <ThemeProvider theme={darkTheme}>
       <GlobalStyle />
-      <Container></Container>
+      <Container>
+        <ProductPreview />
+      </Container>
     </ThemeProvider>
   );
 }
@@ -35,6 +39,7 @@ const Container = styled.div`
   background-color: ${props => props.theme.background};
   font-family: ${props => props.theme.font};
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding: 2rem 10rem;
 `;
