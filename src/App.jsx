@@ -9,7 +9,7 @@ const App = () => {
     text: "#CECECE",
     accent: "#DE6100",
 
-    font: "",
+    font: "'Kumbh Sans', sans-serif",
   }
 
   return (
