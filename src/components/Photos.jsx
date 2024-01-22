@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import picture1 from '../assets/product/product-1.jpg';
@@ -22,19 +22,54 @@ const Photos = () => {
         picture4
     ])
     const [displayPhoto, setDisplayPhoto] = useState(picture1);
+    const [activeThumbnail, setActiveThumbnail] = useState(1);
 
     const changePhoto = (src) => {
         setDisplayPhoto(src);
     }
 
+    //sets the active thumbnail based on the display photo
+    useEffect(() => {
+        switch (displayPhoto) {
+            case picture1: setActiveThumbnail(1); break;
+            case picture2: setActiveThumbnail(2); break;
+            case picture3: setActiveThumbnail(3); break;
+            case picture4: setActiveThumbnail(4); break;
+        }
+
+    }, [displayPhoto])
+
     return (
         <Container>
             <MainPhoto src={displayPhoto} />
             <Gallery>
-                <Thumbnail src={thumb1} onClick={() => changePhoto(picture1)} />
-                <Thumbnail src={thumb2} onClick={() => changePhoto(picture2)} />
-                <Thumbnail src={thumb3} onClick={() => changePhoto(picture3)} />
-                <Thumbnail src={thumb4} onClick={() => changePhoto(picture4)} />
+                <ThumbnailContainer
+                    onClick={() => changePhoto(picture1)}
+                    $active={activeThumbnail === 1 ? true : false}
+                >
+                    <Thumbnail src={thumb1} />
+                </ThumbnailContainer>
+
+                <ThumbnailContainer
+                    onClick={() => changePhoto(picture2)}
+                    $active={activeThumbnail === 2 ? true : false}
+                >
+                    <Thumbnail src={thumb2} />
+                </ThumbnailContainer>
+
+                <ThumbnailContainer
+                    onClick={() => changePhoto(picture3)}
+                    $active={activeThumbnail === 3 ? true : false}
+                >
+                    <Thumbnail src={thumb3} />
+                </ThumbnailContainer>
+
+                <ThumbnailContainer
+                    $active={activeThumbnail === 4 ? true : false}
+                    onClick={() => changePhoto(picture4)}
+                >
+                    <Thumbnail src={thumb4} />
+                </ThumbnailContainer>
             </Gallery>
         </Container>
     );
@@ -63,8 +98,36 @@ const Gallery = styled.div`
     grid-gap: 2rem;
 `;
 
-const Thumbnail = styled.img`
+const ThumbnailContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     border-radius: 10px;
     cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    ${props => props.$active && `
+        border: 2px solid ${props.theme.accent};
+
+        &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    0deg, 
+                    rgba(255, 255, 255, 0.55) 0%,
+                    rgba(255, 255, 255, 0.55) 100%);
+                z-index: 3;
+            }
+    `}
+`;
+
+const Thumbnail = styled.img`
+    width: 100%;
 `;
