@@ -1,6 +1,7 @@
 import { useState } from "react";
-
 import styled from "styled-components";
+
+import Cart from "./Cart";
 
 import logoImage from '../assets/logo.svg';
 import profileIcon from '../assets/profile.png';
@@ -13,19 +14,24 @@ import close from '../assets/icons/close.svg';
 const Nav = () => {
 
     const [showNav, setShowNav] = useState(false);
+    const [showCart, setShowCart] = useState(false);
 
-    const toggle = () => {
+    const toggleNav = () => {
         setShowNav(!showNav);
+    }
+
+    const toggleCart = () => {
+        setShowCart(!showCart);
     }
 
     return (
         <Container>
             <NavSection>
-                <Menu src={menu} alt="menu icon" onClick={() => toggle()} />
+                <Menu src={menu} alt="menu icon" onClick={() => toggleNav()} />
                 <Logo src={logoImage} alt="logo image" />
                 
                 <NavLinks $show={showNav}>
-                    <Close src={close} alt="close menu icon" onClick={() => toggle()} />
+                    <Close src={close} alt="close menu icon" onClick={() => toggleNav()} />
                     <Link>Collections</Link>
                     <Link>Men</Link>
                     <Link>Women</Link>
@@ -35,7 +41,11 @@ const Nav = () => {
             </NavSection>
 
             <NavSection>
-                <CartIcon src={cartIcon} alt="cart icon" />
+                <CartIcon src={cartIcon} alt="cart icon" onClick={() => toggleCart()} />
+                {
+                    showCart &&
+                    <Cart />
+                }
                 <Profile src={profileIcon} alt="profile picture" />
             </NavSection>
         </Container>
@@ -51,6 +61,7 @@ const Container = styled.div`
     justify-content: space-between;
     padding-bottom: 2rem;
     border-bottom: 1px solid ${props => props.theme.secondary};
+    position: relative;
 `;
 
 const NavSection = styled.div`
