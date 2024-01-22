@@ -1,11 +1,18 @@
 import styled from "styled-components";
 
 import Nav from "./Nav";
+import Product from "./Product";
+import Photos from "./Photos";
 
 const ProductPreview = () => {
     return (
         <Container>
             <Nav />
+
+            <ProductInfo>
+                <Photos />
+                <Product />
+            </ProductInfo>
         </Container>
     );
 }
@@ -29,4 +36,10 @@ const Container = styled.div`
         width: 100%;
         margin: 2rem 1rem;
     }
+`;
+
+const ProductInfo = styled.div`
+    display: flex;
+    align-items: stretch;
+    justify-content: space-evenly;
 `;

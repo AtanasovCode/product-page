@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import product from '../assets/product/product-1.jpg';
+import product from '../assets/product/product-1-thumbnail.jpg';
 import deleteIcon from '../assets/icons/delete.svg';
 
 const Cart = () => {

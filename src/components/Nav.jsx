@@ -62,6 +62,7 @@ const Container = styled.div`
     padding-bottom: 2rem;
     border-bottom: 1px solid ${props => props.theme.secondary};
     position: relative;
+    margin-bottom: 5.5rem;
 `;
 
 const NavSection = styled.div`
