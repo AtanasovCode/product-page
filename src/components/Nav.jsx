@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import styled from "styled-components";
 
 import logoImage from '../assets/logo.svg';
@@ -9,13 +11,21 @@ import close from '../assets/icons/close.svg';
 
 
 const Nav = () => {
+
+    const [showNav, setShowNav] = useState(false);
+
+    const toggle = () => {
+        setShowNav(!showNav);
+    }
+
     return (
         <Container>
             <NavSection>
-                <Menu src={menu} />
+                <Menu src={menu} alt="menu icon" onClick={() => toggle()} />
                 <Logo src={logoImage} alt="logo image" />
                 
-                <NavLinks>
+                <NavLinks $show={showNav}>
+                    <Close src={close} alt="close menu icon" onClick={() => toggle()} />
                     <Link>Collections</Link>
                     <Link>Men</Link>
                     <Link>Women</Link>
@@ -82,6 +92,27 @@ const NavLinks = styled.div`
         left: -100%;
         padding: 2rem;
         background-color: ${props => props.theme.background};
+        transition: all .4s ease;
+
+        ${props => props.$show && `
+            transition: all .4s ease;
+            left: 0; 
+        `};
+    }
+`;
+
+const Close = styled.img`
+    display: none;
+
+    @media (max-width: 950px) {
+        display: inline-block;
+        margin-bottom: 3rem;
+        width: 1.2rem;
+        cursor: pointer;
+    }
+
+    @media (max-width: 675px) {
+        width: .9rem;
     }
 `;
 
