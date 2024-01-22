@@ -13,7 +13,10 @@ import thumb3 from '../assets/product/product-3-thumbnail.jpg';
 import thumb4 from '../assets/product/product-4-thumbnail.jpg';
 
 
-const Photos = () => {
+const Photos = ({
+    preview,
+    togglePreview,
+}) => {
 
     const [photos, setPhotos] = useState([
         picture1,
@@ -40,8 +43,11 @@ const Photos = () => {
     }, [displayPhoto])
 
     return (
-        <Container>
-            <MainPhoto src={displayPhoto} />
+        <Container $preview={preview}>
+            <MainPhoto 
+                src={displayPhoto}
+                onClick={() => togglePreview()}
+            />
             <Gallery>
                 <ThumbnailContainer
                     onClick={() => changePhoto(picture1)}
@@ -83,6 +89,15 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    ${props => props.$preview && `
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        width: 25%;
+        z-index: 2;
+    `}
 `;
 
 const MainPhoto = styled.img`
