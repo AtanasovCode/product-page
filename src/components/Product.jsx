@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import plus from '../assets/icons/plus.svg';
 import minus from '../assets/icons/minus.svg';
+import cartIcon from '../assets/icons/cart.svg';
 
 const Product = () => {
     return (
@@ -33,6 +34,7 @@ const Product = () => {
                     <AddIcon src={minus} alt="minus icon" />
                 </ProductNumber>
                 <CartButton>
+                    <Cart src={cartIcon} />
                     Add to cart
                 </CartButton>
             </ButtonsContainer>
@@ -159,4 +161,9 @@ const CartButton = styled.div`
     color: #FFF;
     font-weight: 700;
     padding: 1rem;
+    cursor: pointer;
+`;
+
+const Cart = styled.img`
+    margin-right: 1rem;
 `;
