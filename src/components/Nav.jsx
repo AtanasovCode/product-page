@@ -11,7 +11,11 @@ import close from '../assets/icons/close.svg';
 
 
 
-const Nav = () => {
+const Nav = ({
+    itemsInCart,
+    itemAdded,
+    removeItemFromCart,
+}) => {
 
     const [showNav, setShowNav] = useState(false);
     const [showCart, setShowCart] = useState(false);
@@ -22,6 +26,10 @@ const Nav = () => {
 
     const toggleCart = () => {
         setShowCart(!showCart);
+    }
+
+    const calculateTotal = () => {
+        return itemsInCart * 125;
     }
 
     return (
@@ -44,7 +52,12 @@ const Nav = () => {
                 <CartIcon src={cartIcon} alt="cart icon" onClick={() => toggleCart()} />
                 {
                     showCart &&
-                    <Cart />
+                    <Cart 
+                        total={calculateTotal}
+                        itemsInCart={itemsInCart}
+                        itemAdded={itemAdded}
+                        removeItemFromCart={removeItemFromCart}
+                    />
                 }
                 <Profile src={profileIcon} alt="profile picture" />
             </NavSection>

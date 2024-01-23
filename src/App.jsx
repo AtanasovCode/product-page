@@ -37,6 +37,7 @@ const App = () => {
   const [activeThumbnail, setActiveThumbnail] = useState(1);
   const [previewPhotos, setPreviewPhotos] = useState(false);
 
+  const [itemAdded, setItemAdded] = useState(false);
   const [itemsInCart, setItemsInCart] = useState(0);
 
   const increaseItemsInCart = () => {
@@ -44,13 +45,23 @@ const App = () => {
 
     temp++;
     setItemsInCart(temp);
-    console.log("Click");
+  }
+
+  const addItemToCart = () => {
+    setItemAdded(true);
+    if(itemsInCart === 0) increaseItemsInCart()
+  }
+
+  const removeItemFromCart = () => {
+    setItemAdded(false);
+    console.log("te");
+    setItemsInCart(0);
   }
 
   const decreaseItemsInCart = () => {
     let temp = itemsInCart;
 
-    if(temp > 0) temp--;
+    if (temp > 0) temp--;
 
     setItemsInCart(temp);
   }
@@ -138,6 +149,9 @@ const App = () => {
           itemsInCart={itemsInCart}
           increaseItemsInCart={increaseItemsInCart}
           decreaseItemsInCart={decreaseItemsInCart}
+          itemAdded={itemAdded}
+          addItemToCart={addItemToCart}
+          removeItemFromCart={removeItemFromCart}
         />
       </Container>
     </ThemeProvider>

@@ -13,11 +13,18 @@ const ProductPreview = ({
     itemsInCart,
     increaseItemsInCart,
     decreaseItemsInCart,
+    itemAdded,
+    addItemToCart,
+    removeItemFromCart,
 }) => {
 
     return (
         <Container>
-            <Nav />
+            <Nav 
+                itemsInCart={itemsInCart}
+                itemAdded={itemAdded}
+                removeItemFromCart={removeItemFromCart}
+            />
 
             <ProductInfo>
                 <Photos 
@@ -31,6 +38,7 @@ const ProductPreview = ({
                     itemsInCart={itemsInCart}
                     increaseItemsInCart={increaseItemsInCart}
                     decreaseItemsInCart={decreaseItemsInCart}
+                    addItemToCart={addItemToCart}
                 />
             </ProductInfo>
         </Container>

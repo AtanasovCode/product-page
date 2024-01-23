@@ -8,6 +8,7 @@ const Product = ({
     itemsInCart,
     increaseItemsInCart,
     decreaseItemsInCart,
+    addItemToCart,
 }) => {
     return (
         <Container>
@@ -45,7 +46,7 @@ const Product = ({
                         onClick={() => increaseItemsInCart()}
                     />
                 </ProductNumber>
-                <CartButton>
+                <CartButton onClick={() => addItemToCart()}>
                     <Cart src={cartIcon} />
                     Add to cart
                 </CartButton>
@@ -174,6 +175,7 @@ const CartButton = styled.div`
     font-weight: 700;
     padding: 1rem;
     cursor: pointer;
+    user-select: none;
 `;
 
 const Cart = styled.img`

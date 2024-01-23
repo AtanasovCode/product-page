@@ -3,27 +3,39 @@ import styled from "styled-components";
 import product from '../assets/product/product-1-thumbnail.jpg';
 import deleteIcon from '../assets/icons/delete.svg';
 
-const Cart = () => {
+const Cart = ({
+    total,
+    itemsInCart,
+    itemAdded,
+    removeItemFromCart,
+}) => {
     return (
         <Container>
             <Heading>
                 Cart
             </Heading>
 
-            <ProductDetails>
-                <ProductSelected>
-                    <Image src={product} alt="image of the product selected in cart" />
+            {
+                itemAdded ?
+                    <ProductDetails>
+                        <ProductSelected>
+                            <Image src={product} alt="image of the product selected in cart" />
 
-                    <Description>
-                        <Name>Product details name just here</Name>
-                        <Quantity>$125 x 3 = $544</Quantity>
-                    </Description>
+                            <Description>
+                                <Name>Product details name just here</Name>
+                                <Quantity>$125 x {itemsInCart} = ${total()}</Quantity>
+                            </Description>
 
-                    <Delete src={deleteIcon} alt="delete icon" />
-                </ProductSelected>
+                            <Delete src={deleteIcon} alt="delete icon" onClick={() => removeItemFromCart()} />
+                        </ProductSelected>
 
-                <Checkout type="button" value="Checkout" />
-            </ProductDetails>
+                        <Checkout type="button" value="Checkout" />
+                    </ProductDetails>
+                    :
+                    <EmptyCart>
+                        Your cart is empty.
+                    </EmptyCart>
+           }
         </Container>
     );
 }
@@ -98,4 +110,13 @@ const Checkout = styled.input`
     border-radius: 11px;
     font-size: 1rem;
     cursor: pointer;
+`;
+
+const EmptyCart = styled.div`
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.625rem;
+    color: ${props => props.theme.text};
+    padding: 2rem;
 `;
