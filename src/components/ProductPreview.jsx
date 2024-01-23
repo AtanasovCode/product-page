@@ -5,25 +5,13 @@ import Nav from "./Nav";
 import Product from "./Product";
 import Photos from "./Photos";
 
-const ProductPreview = () => {
-
-    const [previewPhotos, setPreviewPhotos] = useState(false);
-
-    const togglePreview = () => {
-        setPreviewPhotos(!previewPhotos);
-    }
+const ProductPreview = ({
+    togglePreview,
+}) => {
 
     return (
         <Container>
             <Nav />
-
-            {
-                previewPhotos &&
-                <>
-                    <Photos preview={true} togglePreview={togglePreview} />
-                    <Tint />
-                </>
-            }
 
             <ProductInfo>
                 <Photos preview={false} togglePreview={togglePreview} />
@@ -58,14 +46,4 @@ const ProductInfo = styled.div`
     display: flex;
     align-items: stretch;
     justify-content: space-evenly;
-`;
-
-const Tint = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .7);
-    z-index: 1;
 `;

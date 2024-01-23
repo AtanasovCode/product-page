@@ -91,12 +91,12 @@ const Container = styled.div`
     justify-content: center;
 
     ${props => props.$preview && `
-        position: absolute;
+        position: fixed;
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
         width: 25%;
-        z-index: 2;
+        z-index: 5;
     `}
 `;
 
