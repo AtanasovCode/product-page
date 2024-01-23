@@ -47,6 +47,7 @@ const Photos = ({
             <MainPhoto 
                 src={displayPhoto}
                 onClick={() => togglePreview()}
+                $preview={preview}
             />
             <Gallery>
                 <ThumbnailContainer
@@ -91,12 +92,7 @@ const Container = styled.div`
     justify-content: center;
 
     ${props => props.$preview && `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        width: 25%;
-        z-index: 5;
+        width: 100%;
     `}
 `;
 
@@ -105,6 +101,10 @@ const MainPhoto = styled.img`
     margin-bottom: 2rem;
     border-radius: 16px;
     cursor: pointer;
+
+    ${props => props.$preview && `
+        cursor: default;
+    `}
 `;
 
 const Gallery = styled.div`
