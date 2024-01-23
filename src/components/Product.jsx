@@ -4,7 +4,11 @@ import plus from '../assets/icons/plus.svg';
 import minus from '../assets/icons/minus.svg';
 import cartIcon from '../assets/icons/cart.svg';
 
-const Product = () => {
+const Product = ({
+    itemsInCart,
+    increaseItemsInCart,
+    decreaseItemsInCart,
+}) => {
     return (
         <Container>
             <CompanyName>
@@ -29,9 +33,17 @@ const Product = () => {
             </PriceContainer>
             <ButtonsContainer>
                 <ProductNumber>
-                    <AddIcon src={plus} alt="plus icon" />
-                    <Number>0</Number>
-                    <AddIcon src={minus} alt="minus icon" />
+                    <AddIcon 
+                        src={minus} 
+                        alt="plus icon"
+                        onClick={() => decreaseItemsInCart()}
+                    />
+                    <Number> {itemsInCart} </Number>
+                    <AddIcon 
+                        src={plus} 
+                        alt="minus icon" 
+                        onClick={() => increaseItemsInCart()}
+                    />
                 </ProductNumber>
                 <CartButton>
                     <Cart src={cartIcon} />

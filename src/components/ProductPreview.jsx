@@ -10,6 +10,9 @@ const ProductPreview = ({
     displayPhoto,
     activeThumbnail,
     changePhoto,
+    itemsInCart,
+    increaseItemsInCart,
+    decreaseItemsInCart,
 }) => {
 
     return (
@@ -24,7 +27,11 @@ const ProductPreview = ({
                     activeThumbnail={activeThumbnail}
                     changePhoto={changePhoto}
                 />
-                <Product />
+                <Product 
+                    itemsInCart={itemsInCart}
+                    increaseItemsInCart={increaseItemsInCart}
+                    decreaseItemsInCart={decreaseItemsInCart}
+                />
             </ProductInfo>
         </Container>
     );

@@ -37,6 +37,24 @@ const App = () => {
   const [activeThumbnail, setActiveThumbnail] = useState(1);
   const [previewPhotos, setPreviewPhotos] = useState(false);
 
+  const [itemsInCart, setItemsInCart] = useState(0);
+
+  const increaseItemsInCart = () => {
+    let temp = itemsInCart;
+
+    temp++;
+    setItemsInCart(temp);
+    console.log("Click");
+  }
+
+  const decreaseItemsInCart = () => {
+    let temp = itemsInCart;
+
+    if(temp > 0) temp--;
+
+    setItemsInCart(temp);
+  }
+
   //change the main active photo
   const changePhoto = (src) => {
     setDisplayPhoto(src);
@@ -109,12 +127,17 @@ const App = () => {
             />
           </PreviewContainer>
         }
+
         {previewPhotos && <Tint />}
+
         <ProductPreview
           togglePreview={togglePreview}
           displayPhoto={displayPhoto}
           changePhoto={changePhoto}
           activeThumbnail={activeThumbnail}
+          itemsInCart={itemsInCart}
+          increaseItemsInCart={increaseItemsInCart}
+          decreaseItemsInCart={decreaseItemsInCart}
         />
       </Container>
     </ThemeProvider>
