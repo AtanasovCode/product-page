@@ -16,31 +16,10 @@ import thumb4 from '../assets/product/product-4-thumbnail.jpg';
 const Photos = ({
     preview,
     togglePreview,
+    changePhoto,
+    activeThumbnail,
+    displayPhoto,
 }) => {
-
-    const [photos, setPhotos] = useState([
-        picture1,
-        picture2,
-        picture3,
-        picture4
-    ])
-    const [displayPhoto, setDisplayPhoto] = useState(picture1);
-    const [activeThumbnail, setActiveThumbnail] = useState(1);
-
-    const changePhoto = (src) => {
-        setDisplayPhoto(src);
-    }
-
-    //sets the active thumbnail based on the display photo
-    useEffect(() => {
-        switch (displayPhoto) {
-            case picture1: setActiveThumbnail(1); break;
-            case picture2: setActiveThumbnail(2); break;
-            case picture3: setActiveThumbnail(3); break;
-            case picture4: setActiveThumbnail(4); break;
-        }
-
-    }, [displayPhoto])
 
     return (
         <Container $preview={preview}>

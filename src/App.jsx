@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 
 import ProductPreview from "./components/ProductPreview";
@@ -7,6 +7,12 @@ import Photos from "./components/Photos";
 import close from './assets/icons/close.svg';
 import next from './assets/icons/next.svg';
 import prev from './assets/icons/prev.svg';
+
+
+import picture1 from './assets/product/product-1.jpg';
+import picture2 from './assets/product/product-2.jpg';
+import picture3 from './assets/product/product-3.jpg';
+import picture4 from './assets/product/product-4.jpg';
 
 const App = () => {
 
@@ -21,10 +27,57 @@ const App = () => {
   }
 
 
+  const [photos, setPhotos] = useState([
+    picture1,
+    picture2,
+    picture3,
+    picture4
+  ])
+  const [displayPhoto, setDisplayPhoto] = useState(picture1);
+  const [activeThumbnail, setActiveThumbnail] = useState(1);
   const [previewPhotos, setPreviewPhotos] = useState(false);
 
+  //change the main active photo
+  const changePhoto = (src) => {
+    setDisplayPhoto(src);
+  }
+
+  //Turns the photo preview mode on/off
   const togglePreview = () => {
     setPreviewPhotos(!previewPhotos);
+  }
+
+  //sets the active thumbnail based on the display photo
+  useEffect(() => {
+    switch (displayPhoto) {
+      case picture1: setActiveThumbnail(1); break;
+      case picture2: setActiveThumbnail(2); break;
+      case picture3: setActiveThumbnail(3); break;
+      case picture4: setActiveThumbnail(4); break;
+    }
+
+  }, [displayPhoto])
+
+  const getNextPhotoIndex = () => {
+    const currentIndex = photos.indexOf(displayPhoto);
+    return (currentIndex + 1) % photos.length;
+  }
+
+  const getPrevPhotoIndex = () => {
+    const currentIndex = photos.indexOf(displayPhoto);
+    return (currentIndex - 1 + photos.length) % photos.length;
+  }
+
+  const showNextPhoto = () => {
+    const nextIndex = getNextPhotoIndex();
+    setDisplayPhoto(photos[nextIndex]);
+    setActiveThumbnail(nextIndex + 1);
+  }
+
+  const showPrevPhoto = () => {
+    const prevIndex = getPrevPhotoIndex();
+    setDisplayPhoto(photos[prevIndex]);
+    setActiveThumbnail(prevIndex + 1);
   }
 
   return (
@@ -35,13 +88,34 @@ const App = () => {
           previewPhotos &&
           <PreviewContainer>
             <CloseIcon src={close} alt="close icon" onClick={() => togglePreview()} />
-            <Arrows src={prev} alt="previous picture icon" position="left" />
-            <Photos preview={true} togglePreview={false} />
-            <Arrows src={next} alt="next picture icon" position="right" />
+            <Arrows
+              src={prev}
+              alt="previous picture icon"
+              position="left"
+              onClick={() => showPrevPhoto()}
+            />
+            <Photos
+              preview={true}
+              togglePreview={false} //Dont allow the preview to be cancelled by clicking on the photo
+              displayPhoto={displayPhoto}
+              changePhoto={changePhoto}
+              activeThumbnail={activeThumbnail}
+            />
+            <Arrows
+              src={next}
+              alt="next picture icon"
+              position="right"
+              onClick={() => showNextPhoto()}
+            />
           </PreviewContainer>
         }
-        { previewPhotos && <Tint /> }
-        <ProductPreview togglePreview={togglePreview} />
+        {previewPhotos && <Tint />}
+        <ProductPreview
+          togglePreview={togglePreview}
+          displayPhoto={displayPhoto}
+          changePhoto={changePhoto}
+          activeThumbnail={activeThumbnail}
+        />
       </Container>
     </ThemeProvider>
   );

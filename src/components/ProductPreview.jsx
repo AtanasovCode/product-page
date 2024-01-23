@@ -7,6 +7,9 @@ import Photos from "./Photos";
 
 const ProductPreview = ({
     togglePreview,
+    displayPhoto,
+    activeThumbnail,
+    changePhoto,
 }) => {
 
     return (
@@ -14,7 +17,13 @@ const ProductPreview = ({
             <Nav />
 
             <ProductInfo>
-                <Photos preview={false} togglePreview={togglePreview} />
+                <Photos 
+                    preview={false} 
+                    togglePreview={togglePreview}
+                    displayPhoto={displayPhoto}
+                    activeThumbnail={activeThumbnail}
+                    changePhoto={changePhoto}
+                />
                 <Product />
             </ProductInfo>
         </Container>
