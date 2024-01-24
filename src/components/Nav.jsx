@@ -76,6 +76,12 @@ const Container = styled.div`
     border-bottom: 1px solid ${props => props.theme.secondary};
     position: relative;
     margin-bottom: 5.5rem;
+
+    @media (max-width: 675px) {
+        padding: 1.5rem;
+        padding-bottom: 2rem;
+        margin-bottom: 0;
+    }
 `;
 
 const NavSection = styled.div`
@@ -98,6 +104,10 @@ const Menu = styled.img`
 const Logo = styled.img`
     height: 1.25rem;
     margin-right: 1.5rem;
+
+    @media (max-width: 675px) {
+        height: .8rem;
+    }
 `;
 
 const NavLinks = styled.div`
@@ -112,7 +122,7 @@ const NavLinks = styled.div`
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        z-index: 2;
+        z-index: 999;
         top: 0;
         left: -100%;
         padding: 2rem;

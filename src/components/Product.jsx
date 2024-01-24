@@ -4,6 +4,7 @@ import plus from '../assets/icons/plus.svg';
 import minus from '../assets/icons/minus.svg';
 import cartIcon from '../assets/icons/cart.svg';
 
+
 const Product = ({
     itemsInCart,
     increaseItemsInCart,
@@ -65,6 +66,16 @@ const Container = styled.div`
     justify-content: flex-start;
     font-family: ${props => props.theme.font};
     color: ${props => props.theme.text};
+
+    @media (max-width: 950px) {
+        width: 60%;
+        text-align: center;
+    }
+
+    @media (max-width: 675px) {
+        width: 90%;
+        margin-bottom: 50px;
+    }
 `;
 
 const CompanyName = styled.div`
@@ -76,13 +87,25 @@ const CompanyName = styled.div`
     letter-spacing: 0.125rem;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
+    
+    @media (max-width: 950px) {
+        margin: 2rem 0;
+        text-align: center;
+        width: 100%;
+    }
 `;
 
 const ProductName = styled.div`
     font-size: 2.75rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 3rem
+    line-height: 3rem;
+
+    @media (max-width: 675px) {
+        width: 100%;
+        font-size: 1.75rem;
+        text-align: center;
+    }
 `;
 
 const ProductDescription = styled.div`
@@ -99,6 +122,13 @@ const PriceContainer = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     margin-bottom: 2rem;
+
+    @media (max-width: 950px) {
+        width: 100%;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: row;
+    }
 `;
 
 const CurrentPrice = styled.div`
@@ -106,6 +136,10 @@ const CurrentPrice = styled.div`
     align-items: center;
     justify-content: center;
     margin-bottom: .3rem;
+
+    @media (max-width: 675px) {
+        margin: 0;
+    }
 `;
 
 const Price = styled.div`
@@ -114,6 +148,10 @@ const Price = styled.div`
     font-weight: 700;
     line-height: normal;
     margin-right: 2rem;
+
+    @media (max-width: 675px) {
+        margin-right: 1rem;
+    }
 `;
 
 const Discount = styled.div`
@@ -129,11 +167,18 @@ const Discount = styled.div`
 
 const OriginalPrice = styled.div`
     color: ${props => props.theme.secondary};
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 700;
     line-height: 1.625rem; /* 162.5% */
     text-decoration: line-through;
+
+    @media (max-width: 675px) {
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 `;
 
 const ButtonsContainer = styled.div`
@@ -141,6 +186,10 @@ const ButtonsContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 675px) {
+        flex-direction: column;
+    }
 `;
 
 const ProductNumber = styled.div`
@@ -152,6 +201,13 @@ const ProductNumber = styled.div`
     border: 1px solid ${props => props.theme.accent};
     border-radius: 0.625rem;
     margin-right: 1rem;
+
+    @media (max-width: 675px) {
+        width: 100%;
+        flex: 100%;
+        margin-bottom: 1rem;
+        margin-right: 0;
+    }
 `;
 
 const AddIcon = styled.img`
@@ -176,6 +232,11 @@ const CartButton = styled.div`
     padding: 1rem;
     cursor: pointer;
     user-select: none;
+
+    @media (max-width: 675px) {
+        flex: 100%;
+        width: 100%;
+    }
 `;
 
 const Cart = styled.img`

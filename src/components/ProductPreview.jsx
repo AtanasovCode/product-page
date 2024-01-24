@@ -16,6 +16,8 @@ const ProductPreview = ({
     itemAdded,
     addItemToCart,
     removeItemFromCart,
+    showPrevPhoto,
+    showNextPhoto,
 }) => {
 
     return (
@@ -33,6 +35,8 @@ const ProductPreview = ({
                     displayPhoto={displayPhoto}
                     activeThumbnail={activeThumbnail}
                     changePhoto={changePhoto}
+                    showPrevPhoto={showPrevPhoto}
+                    showNextPhoto={showNextPhoto}
                 />
                 <Product 
                     itemsInCart={itemsInCart}
@@ -62,7 +66,7 @@ const Container = styled.div`
 
     @media (max-width: 675px) {
         width: 100%;
-        margin: 2rem 1rem;
+        margin: 2rem 0;
     }
 `;
 
@@ -70,4 +74,10 @@ const ProductInfo = styled.div`
     display: flex;
     align-items: stretch;
     justify-content: space-evenly;
+
+    @media (max-width: 950px) {
+        flex-direction: column;  
+        align-items: center;
+        justify-content: center; 
+    }
 `;

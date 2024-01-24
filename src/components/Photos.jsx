@@ -12,6 +12,9 @@ import thumb2 from '../assets/product/product-2-thumbnail.jpg';
 import thumb3 from '../assets/product/product-3-thumbnail.jpg';
 import thumb4 from '../assets/product/product-4-thumbnail.jpg';
 
+import next from '../assets/icons/next.svg';
+import prev from '../assets/icons/prev.svg';
+
 
 const Photos = ({
     preview,
@@ -19,15 +22,31 @@ const Photos = ({
     changePhoto,
     activeThumbnail,
     displayPhoto,
+    showPrevPhoto,
+    showNextPhoto,
 }) => {
 
     return (
         <Container $preview={preview}>
-            <MainPhoto 
-                src={displayPhoto}
-                onClick={() => togglePreview()}
-                $preview={preview}
-            />
+            <MainPhotoContainer>
+                <Arrows
+                    src={prev}
+                    alt="previous picture icon"
+                    position="left"
+                    onClick={() => showPrevPhoto()}
+                />
+                <MainPhoto
+                    src={displayPhoto}
+                    onClick={() => togglePreview()}
+                    $preview={preview}
+                />
+                <Arrows
+                    src={next}
+                    alt="previous picture icon"
+                    position="right"
+                    onClick={() => showNextPhoto()}
+                />
+            </MainPhotoContainer>
             <Gallery>
                 <ThumbnailContainer
                     onClick={() => changePhoto(picture1)}
@@ -73,23 +92,51 @@ const Container = styled.div`
     ${props => props.$preview && `
         width: 100%;
     `}
+
+    @media (max-width: 950px) {
+        width: 70%;
+    }
+
+    @media (max-width: 675px) {
+        width: 100%;
+    }
+`;
+
+const MainPhotoContainer = styled.div`
+    position: relative;
+    width: 100%;
+    margin-bottom: 2rem;
+    background-color: red;
 `;
 
 const MainPhoto = styled.img`
     width: 100%;
-    margin-bottom: 2rem;
     border-radius: 16px;
     cursor: pointer;
 
     ${props => props.$preview && `
         cursor: default;
     `}
+
+    @media (max-width: 675px) {
+        border-radius: 0;
+        margin-bottom: 1rem;
+        cursor: default;
+    }
 `;
 
 const Gallery = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 2rem;
+
+    @media (max-width: 950px) {
+        grid-gap: .8rem;
+    }
+
+    @media (max-width: 675px) {
+        display: none;
+    }
 `;
 
 const ThumbnailContainer = styled.div`
@@ -124,4 +171,25 @@ const ThumbnailContainer = styled.div`
 
 const Thumbnail = styled.img`
     width: 100%;
+`;
+
+const Arrows = styled.img`
+    display: none;
+
+    @media (max-width: 675px) {
+        display: block;
+        position: absolute;
+        width: 3rem;
+        cursor: pointer;
+        top: 50%;
+        transform: translateY(-50%);
+
+        ${props => props.position === "left" && `
+            left: 5%;
+        `}
+
+        ${props => props.position === "right" && `
+            right: 5%;
+        `}
+    }
 `;

@@ -152,6 +152,8 @@ const App = () => {
           itemAdded={itemAdded}
           addItemToCart={addItemToCart}
           removeItemFromCart={removeItemFromCart}
+          showPrevPhoto={showPrevPhoto}
+          showNextPhoto={showNextPhoto}
         />
       </Container>
     </ThemeProvider>
@@ -186,6 +188,10 @@ const PreviewContainer = styled.div`
       transform: translateX(-50%) translateY(-50%);
       z-index: 5;
       min-width: 350px;
+
+      @media (max-width: 675px) {
+        display: none;
+      }
 `;
 
 const Tint = styled.div`
@@ -196,6 +202,10 @@ const Tint = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+
+    @media (max-width: 675px) {
+        display: none;
+      }
 `;
 
 const CloseIcon = styled.img`
@@ -206,7 +216,7 @@ const CloseIcon = styled.img`
   cursor: pointer;
 `;
 
-const Arrows = styled.img`
+export const Arrows = styled.img`
   width: 3.5rem;
   height: 3.5rem;
   position: absolute;

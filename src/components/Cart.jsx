@@ -22,8 +22,8 @@ const Cart = ({
                             <Image src={product} alt="image of the product selected in cart" />
 
                             <Description>
-                                <Name>Product details name just here</Name>
-                                <Quantity>$125 x {itemsInCart} = ${total()}</Quantity>
+                                <Name>Fall Limited Edition Sneakers</Name>
+                                <Quantity>$125 x {itemsInCart} =<Bold> ${total()}</Bold></Quantity>
                             </Description>
 
                             <Delete src={deleteIcon} alt="delete icon" onClick={() => removeItemFromCart()} />
@@ -53,8 +53,18 @@ const Container = styled.div`
     color: ${props => props.theme.text};
     font-family: ${props => props.theme.font};
     position: absolute;
-    top: 80%;
+    top: 75%;
+    right: 1%;
     border-radius: 11px;
+    border: 1px solid ${props => props.theme.secondary};
+    z-index: 2;
+
+    @media (max-width: 675px) {
+        top: 120%;
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 `;
 
 const Heading = styled.div`
@@ -66,6 +76,7 @@ const Heading = styled.div`
 `;
 
 const ProductDetails = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -74,21 +85,40 @@ const ProductDetails = styled.div`
 
 
 const ProductSelected = styled.div`
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1.5rem;
+
+    @media (max-width: 675px) {
+        margin-bottom: 2rem;
+    }
 `;
 
 const Image = styled.img`
     width: 3.125rem;
     border-radius: 4px;
+
+    @media (max-width: 675px) {
+        width: 20%;
+    }
 `;
 
 const Description = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 1.2rem;
+    font-size: 1.2rem;
+
+    @media (max-width: 675px) {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    @media (max-width: 500px) {
+        font-size: 1rem;
+    }
 `;
 
 const Name = styled.div``;
@@ -97,6 +127,10 @@ const Quantity = styled.div``;
 
 const Delete = styled.img`
     cursor: pointer;
+
+    @media (max-width: 675px) {
+        width: 1.5rem;
+    }
 `;
 
 const Checkout = styled.input`
@@ -119,4 +153,8 @@ const EmptyCart = styled.div`
     line-height: 1.625rem;
     color: ${props => props.theme.text};
     padding: 2rem;
+`;
+
+const Bold = styled.span`
+    font-weight: 700;
 `;
