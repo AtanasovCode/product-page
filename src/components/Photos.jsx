@@ -106,7 +106,6 @@ const MainPhotoContainer = styled.div`
     position: relative;
     width: 100%;
     margin-bottom: 2rem;
-    background-color: red;
 `;
 
 const MainPhoto = styled.img`

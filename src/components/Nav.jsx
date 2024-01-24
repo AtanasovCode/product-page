@@ -37,7 +37,7 @@ const Nav = ({
             <NavSection>
                 <Menu src={menu} alt="menu icon" onClick={() => toggleNav()} />
                 <Logo src={logoImage} alt="logo image" />
-                
+
                 <NavLinks $show={showNav}>
                     <Close src={close} alt="close menu icon" onClick={() => toggleNav()} />
                     <Link>Collections</Link>
@@ -49,10 +49,16 @@ const Nav = ({
             </NavSection>
 
             <NavSection>
-                <CartIcon src={cartIcon} alt="cart icon" onClick={() => toggleCart()} />
+                <CartIconContainer onClick={() => toggleCart()}>
+                    {
+                        itemsInCart > 0 &&
+                        <CartCount>{itemsInCart}</CartCount>
+                    }
+                    <CartIcon src={cartIcon} alt="cart icon" />
+                </CartIconContainer>
                 {
                     showCart &&
-                    <Cart 
+                    <Cart
                         total={calculateTotal}
                         itemsInCart={itemsInCart}
                         itemAdded={itemAdded}
@@ -172,13 +178,32 @@ const Link = styled.a`
     }
 `;
 
+const CartIconContainer = styled.div`
+    position: relative;
+    cursor: pointer;
+`;
+
 const CartIcon = styled.img`
     height: 1.5rem;
-    cursor: pointer;
 
     @media (max-width: 950px) {
         height: 1.25rem;
     }
+`;
+
+const CartCount = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: ${props => props.theme.accent};
+    font-size: .72rem;
+    padding: .3rem .5rem;
+    color: #FFF;
+    border-radius: 10px;
+    font-weight: 700;
+    position: absolute;
+    top: -50%;
+    right: -30%;
 `;
 
 const Profile = styled.img`
@@ -194,5 +219,6 @@ const Profile = styled.img`
     @media (max-width: 675px) {
         width: 1.5rem;
         height: 1.5rem;
+        margin-left: .8rem;
     }
 `;
